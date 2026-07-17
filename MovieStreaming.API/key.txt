@@ -1,0 +1,9 @@
+Amaç:
+
+Kullanıcıların filmleri listelediği, istediği filmi seçip izleyebildiği bir web sitesi için gerekli Back end servislere ihtiyacımız var. Ön yüzü kodlayan bir developer’in ana sayfa, kategori , film detay ve içerik play aşamalarında kullanacağı Back end servisleri vermek istiyoruz. 
+
+Yazılacak serviste Authorization, Caching ve Logging katmanları Aspect’ler halinde hazırlanıp kolayca ilgili metodlara uygulanabilmelidir. Exception handling mutlaka olmalı. 
+
+Projeye database eklenmesine gerek yok, bir json dosyasından çekilebilir ya da dummy data kullanılabilir.  
+
+Çalışma .net core ile Restful Web API olarak yazılmalı. Servis metodları mutlaka dökümante edilmelidir.

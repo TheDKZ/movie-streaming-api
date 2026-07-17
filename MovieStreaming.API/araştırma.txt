@@ -1,0 +1,20 @@
+1. Request Pipeline ve Middleware (Yöneticinin "Use" Dediği Olay)
+Bir kullanıcı sisteme (örneğin /api/movies/1 adresine) istek (Request) attığında, bu istek doğrudan veritabanına veya koda gitmez. Uzun bir tünelden geçer. Bu tünelin içindeki kontrol noktalarına Middleware (Ara Katman) denir.
+
+Node.js Mantığı: Express'te app.use(logger) veya app.use(auth) yazarak araya girerdin. İstek next() diyene kadar bir sonrakine geçemezdi.
+
+.NET Core Mantığı: Birebir aynıdır! Program.cs dosyası bu tünelin inşa edildiği yerdir. Yöneticinin "sonra use yazacaksın" demesinin sebebi bu tüneli kuracak olmandır.
+
+Önemli Kural (Sıralama): Bu tünelde sıralama hayati önem taşır.
+Örneğin; app.UseAuthorization() (Yetki kontrolü) her zaman app.UseControllers() (İsteğin metoda ulaşması) işleminden önce yazılmalıdır. Kapıdaki güvenlik görevlisi, ziyaretçiyi içeri almadan önce kimliğini sormalıdır.
+///////////////////////////////
+
+
+2. Dependency Injection (DI - Bağımlılık Enjeksiyonu)
+.NET Core'un kalbi ve en büyük gücü burasıdır. Yazılım mühendisliğinde (özellikle SOLID prensiplerinde) sınıfların birbirine sıkı sıkıya bağlı (tightly coupled) olması istenmez.
+
+Eski Usul / Yanlış Yöntem: Bir Film okuma servisine ihtiyacın var. Gidip Controller içinde MovieService service = new MovieService(); yazarsan, o Controller'ı o servise göbekten bağlamış olursun.
+
+.NET Core Mantığı: Sisteme (yine Program.cs içine) "Benim bir IService'e ihtiyacım olduğunda bana MovieService ver" dersin. .NET, o sınıfa ihtiyaç duyulduğunda arka planda nesneyi senin yerine üretir (new'ler) ve Controller'ın içine hazır olarak yollar (enjekte eder).
+
+Böylece kodun çok daha esnek, test edilebilir ve modüler hale gelir.

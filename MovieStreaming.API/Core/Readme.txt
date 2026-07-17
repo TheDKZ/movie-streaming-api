@@ -1,0 +1,1 @@
+Models (Movie, Category gibi sınıflar)

@@ -1,0 +1,21 @@
+Digiturk VOD Backend API - 20 Günlük Proje Planı
+
+1. Hafta: Araştırma, Analiz ve Temel Atma (Gün 1-5)
+- Kavramsal Araştırma: .NET Core mimarisi nasıl çalışır? Dependency Injection (DI) nedir? Middleware (Ara Katman) yapısı Node.js'ten nasıl farklıdır?
+- Veri Modelleme: VOD sistemi için gerekli sınıfların (Movie, Category) tasarlanması.
+- Dummy Data Entegrasyonu: movies.json dosyasının oluşturulması ve bu dosyanın C# tarafında okunması için gerekli altyapının (Repository mantığı) kurulması.
+
+2. Hafta: Controller ve Servis Katmanlarının Kodlanması (Gün 6-10)
+- Endpoint Tasarımı: Ana sayfa, Kategori, Film Detay ve İçerik Oynatma (Play) işlemleri için gerekli RESTful uçların belirlenmesi.
+- Servislerin Yazılması: JSON datasını okuyup işleyen iş mantığı (Business Logic) sınıflarının kodlanması.
+- DTO (Data Transfer Object) Kullanımı: Frontend'e gereksiz veri göndermemek için verilerin formatlanması.
+
+3. Hafta: AOP (Aspect-Oriented Programming) ve Hata Yönetimi (Gün 11-15)
+- Exception Handling: Uygulama genelinde patlayan hataları tek bir merkezden (Middleware) yakalayıp standart bir JSON formatında dönme araştırması ve kodlanması.
+- Caching Aspect: Sık aranan filmlerin veya ana sayfa verisinin her seferinde baştan okunmaması için In-Memory Cache (Önbellek) yapısının Action Filter olarak yazılması.
+- Logging Aspect: Sisteme gelen isteklerin, hataların veya performans metriklerinin loglanması.
+
+4. Hafta: Güvenlik, Dökümantasyon ve Kapanış (Gün 16-20)
+- Authorization Aspect: Hangi endpoint'lere giriş yapılmadan erişilemeyeceğinin (örneğin sadece üyeler film izleyebilir) basit bir attribute ile yönetilmesi.
+- Swagger Dökümantasyonu: Frontend geliştiricisinin okuyabilmesi için API metodlarının üzerine XML yorum satırlarıyla parametre ve dönüş tiplerinin detaylandırılması.
+- Refactoring: Kodların temizlenmesi, GitHub'a son düzenli push'ların yapılması ve sunum hazırlığı.

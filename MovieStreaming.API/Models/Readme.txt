@@ -1,0 +1,1 @@
+Core (Bunun içine de Aspects ve Exceptions adında iki alt klasör aç)
