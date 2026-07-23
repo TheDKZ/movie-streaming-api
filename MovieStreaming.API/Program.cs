@@ -1,9 +1,19 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using MovieStreaming.API.Services;
+using Serilog;
 using System.Text;
-
 var builder = WebApplication.CreateBuilder(args);
+
+// --- SERILOG AYARLARI EKLENDİ ---
+// Logları hem konsola hem de Logs klasörünün içine gün gün metin dosyası olarak yaz
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .WriteTo.File("Logs/log-.txt", rollingInterval: RollingInterval.Day)
+    .CreateLogger();
+
+// Sistemin standart loglama altyapısını bizim kurduğumuz Serilog ile değiştiriyoruz
+builder.Host.UseSerilog();
 
 // --- 1. ARAÇ ÇANTASI (SERVICES) ---
 builder.Services.AddControllers();

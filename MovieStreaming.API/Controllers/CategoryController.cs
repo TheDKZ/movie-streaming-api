@@ -35,7 +35,7 @@ namespace MovieStreaming.API.Controllers
 
             // 3. HAFIZADA YOKSA VERİTABANINA GİDİYORUZ
             Console.WriteLine(">>> DİKKAT: Veri RAM'de bulunamadı, Veritabanına gidiliyor! <<<");
-
+            //sistemi test amaclı yavaslatmak icin kullandım caching test System.Threading.Thread.Sleep(3000);
             var category = DummyDataStore.Movies.Where(m => m.Category == categoryName).ToList();
             if (!category.Any())
             {

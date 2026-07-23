@@ -13,6 +13,8 @@ namespace MovieStreaming.API.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
+            //throw new Exception("Sistem cökme testi! Middleware calısıyor mu?");
+            //sistemi bilerek pattığımız deney 
             if (DummyDataStore.Movies == null || !DummyDataStore.Movies.Any())
             {
                 return NotFound("No movies found.");
