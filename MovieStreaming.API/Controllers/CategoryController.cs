@@ -1,24 +1,58 @@
 using MovieStreaming.API.Data;
 using MovieStreaming.API.Models;
-using Microsoft.AspNetCore.Mvc;// Bu bizim sinifimiza bir web sunucusuna donusturecek gucleri getirir.//controllerBase sinifi, HTTP isteklerini islemek icin gerekli olan temel fonksiyonlari saglar. Bu sinif, bir web API'si olusturmak icin kullanilir ve HTTP GET, POST, PUT, DELETE gibi istekleri islemek icin gerekli olan metodlari icerir.
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Caching.Memory;
+using MovieStreaming.API.Filters; // LogAspect kütüphanesini ekledik
 
-namespace MovieStreaming.API. 
+namespace MovieStreaming.API.Controllers
 {
-     public class CategoryController : ControllerBase
+    [Authorize]
+    [ApiController]
+    [Route("api/[controller]")]
+    public class CategoryController : ControllerBase
     {
-        [HttpGet("{categoryName}")] //Bu metodun sadece tarayıcıdan URL girilerek veya veri okuma amacıyla (GET) çağrılabileceğini belirtir.
-        public IActionResult GetCategoryName(string categoryName) // IActionResult Nedir? Neden string veya int dönmüyoruz? Çünkü bir API her zaman iki şey döner: Veri ve HTTP Durum Kodu
+        private readonly IMemoryCache _cache;
+
+        public CategoryController(IMemoryCache cache)
         {
+            _cache = cache;
+        }
+
+        [LogAspect]
+        [HttpGet("{categoryName}")]
+        public IActionResult GetCategoryName(string categoryName)
+        {
+            // 1. HAFIZADA ARAYACAĞIMIZ ANAHTAR KELİME
+            string cacheKey = $"CategoryData_{categoryName}";
+
+            // 2. HAFIZAYI KONTROL EDİYORUZ
+            if (_cache.TryGetValue(cacheKey, out var cachedCategory))
+            {
+                // Bulursa direkt RAM'den (hafızadan) dönüyor
+                return Ok(cachedCategory);
+            }
+
+            // 3. HAFIZADA YOKSA VERİTABANINA GİDİYORUZ
+            Console.WriteLine(">>> DİKKAT: Veri RAM'de bulunamadı, Veritabanına gidiliyor! <<<");
+
             var category = DummyDataStore.Movies.Where(m => m.Category == categoryName).ToList();
             if (!category.Any())
             {
                 return NotFound("Category not found.");
             }
+
+            // 4. VERİTABANINDAN BULDUĞUMUZU BİR DAHAKİNE HATIRLAMAK İÇİN HAFIZAYA YAZIYORUZ
+            _cache.Set(cacheKey, category, TimeSpan.FromMinutes(5));
+
             return Ok(category);
         }
+
+        [LogAspect]
         [HttpGet("{id:int}")]
         public IActionResult GetCategoryById(int id)
         {
+            // Bu metodu şimdilik eski halinde (cachesiz) bırakıyoruz
             var movie = DummyDataStore.Movies.FirstOrDefault(m => m.Id == id);
             if (movie == null)
             {
@@ -28,5 +62,3 @@ namespace MovieStreaming.API.
         }
     }
 }
-
-  
