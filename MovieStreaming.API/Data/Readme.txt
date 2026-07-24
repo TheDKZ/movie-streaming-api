@@ -1,1 +1,0 @@
-Data (İçine dummy verilerimizi tutacağımız movies.json dosyasını koyacağız)

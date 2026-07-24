@@ -1,6 +1,5 @@
-using MovieStreaming.API.Data;
-using MovieStreaming.API.Models;
 using Microsoft.AspNetCore.Mvc;
+using MovieStreaming.API.Data;
 using MovieStreaming.API.Filters;
 
 namespace MovieStreaming.API.Controllers

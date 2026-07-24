@@ -20,7 +20,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddScoped<IPlayService, PlayService>();
 // Çakışma yaratan kilit butonunu temizledik, standart Swagger aktif
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    var xmlFile = $"{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    c.IncludeXmlComments(xmlPath);
+});
 // Ne işe yarar: Herhangi bir sınıf IAuthService talep ettiğinde, ona bir AuthService nesnesi üretip yollar.
 builder.Services.AddScoped<IAuthService, AuthService>();
 // Uygulamaya hafıza (Cache) tahsis ediyoruz

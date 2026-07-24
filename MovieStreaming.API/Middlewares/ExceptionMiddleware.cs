@@ -1,5 +1,3 @@
-using Microsoft.AspNetCore.Mvc;
-
 namespace MovieStreaming.API.Middlewares
 {
     public class ExceptionMiddleware

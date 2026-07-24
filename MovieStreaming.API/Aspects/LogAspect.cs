@@ -24,7 +24,7 @@ namespace MovieStreaming.API.Filters//LogAspect yapmanın temel amacı, uygulama
             var actionName = context.ActionDescriptor.DisplayName;
 
             // 3. Çıkış logunu yazdır
-            logger.LogInformation("[BİTTİ] Metot işlemini tamamladı: {ActionName}",actionName);
+            logger.LogInformation("[BİTTİ] Metot işlemini tamamladı: {ActionName}", actionName);
             base.OnActionExecuted(context);
         }
     }

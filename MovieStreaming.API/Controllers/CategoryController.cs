@@ -1,8 +1,7 @@
-using MovieStreaming.API.Data;
-using MovieStreaming.API.Models;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
+using MovieStreaming.API.Data;
 using MovieStreaming.API.Filters; // LogAspect kütüphanesini ekledik
 
 namespace MovieStreaming.API.Controllers
@@ -18,7 +17,10 @@ namespace MovieStreaming.API.Controllers
         {
             _cache = cache;
         }
-
+        /// <summary>
+        /// Sistemdeki tüm film kategorilerini listeler. Ön yüzdeki (Frontend) ana sayfa kategori menüsünü doldurmak için bu servis kullanılır.
+        /// </summary>
+        /// <returns>Kategori listesi ve durum kodu döndürür.</returns>
         [LogAspect]
         [HttpGet("{categoryName}")]
         public IActionResult GetCategoryName(string categoryName)
@@ -47,6 +49,8 @@ namespace MovieStreaming.API.Controllers
 
             return Ok(category);
         }
+        /// Benzersiz kimlik numarasına (ID) göre spesifik bir kategorinin detaylarını getirir. Ön yüz (Frontend) geliştiricisi belirli bir kategoriye tıklandığında bu servisi kullanmalıdır
+        /// <param //name="id">Aranacak kategorinin benzersiz kimlik numarası (Örn: 1)</param>
 
         [LogAspect]
         [HttpGet("{id:int}")]
