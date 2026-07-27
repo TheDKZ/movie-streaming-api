@@ -9,7 +9,7 @@ namespace MovieStreaming.API.Middlewares
             _next = next;
             _logger = logger;
         }
-        public async Task InvokeAsync(HttpContext httpContext) // asycn task Bu işlemin asenkron (eşzamansız) çalışacağını belirtir
+        public async Task InvokeAsync(HttpContext httpContext) // asycn task Bu islemin asenkron (eszamansız) calısacagını belirtir
         {
             try
             {

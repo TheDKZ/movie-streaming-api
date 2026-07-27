@@ -9,7 +9,6 @@ public class AuthService : IAuthService
 {
     public string GenerateToken(string username, string password)
     {
-        // İş mantığı ve kontroller artık burada!
         if (username == "admin" && password == "12345")
         {
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -29,10 +28,10 @@ public class AuthService : IAuthService
             };
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
-            return tokenHandler.WriteToken(token); // Üretilen token'ı string olarak geri yolla
+            return tokenHandler.WriteToken(token); // uretilen token'i string olarak geri yolla
         }
 
-        // Kullanıcı adı/şifre yanlışsa null dön
+        // Kullanici adi/sifre yanlissa null don
         return null;
     }
 }
