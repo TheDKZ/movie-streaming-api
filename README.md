@@ -1,4 +1,4 @@
-# 📱 Digiturk VOD & Streaming Platform (Full-Stack)
+# 📱DKZ VOD & Streaming Platform (Full-Stack)
 
 [🇬🇧 English](#-english) | [🇹🇷 Türkçe](#-türkçe)
 
@@ -23,10 +23,12 @@ This project is a full-stack **Video on Demand (VOD)** platform where users can 
 
 ### 📂 Project Structure
 ```text
-DigiturkProject/
+DKZ VOD/
 │
 ├── Backend/          # .NET Core Web API services and database contexts
 └── Mobil/            # Expo-based React Native mobile application
+
+TR:
 🔙 Backend (API)
 Çatı (Framework): .NET Core (RESTful Web API)
 
