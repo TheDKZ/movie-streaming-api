@@ -23,7 +23,7 @@ This project is a full-stack **Video on Demand (VOD)** platform where users can 
 
 ### 📂 Project Structure
 ```text
-DKZ VOD/
+DKZVOD/
 │
 ├── Backend/          # .NET Core Web API services and database contexts
 └── Mobil/            # Expo-based React Native mobile application
